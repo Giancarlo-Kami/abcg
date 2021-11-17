@@ -1,9 +1,10 @@
 #ifndef OPENGLWINDOW_HPP_
 #define OPENGLWINDOW_HPP_
 
-#include <array>
+#include <random>
 
 #include "abcg.hpp"
+#include "model.hpp"
 
 class OpenGLWindow : public abcg::OpenGLWindow {
  protected:
@@ -14,17 +15,25 @@ class OpenGLWindow : public abcg::OpenGLWindow {
   void terminateGL() override;
 
  private:
-  GLuint m_vao{};
-  GLuint m_vboVertices{};
-  GLuint m_vboColors{};
+
   GLuint m_program{};
 
   int m_viewportWidth{};
   int m_viewportHeight{};
 
-  bool m_showDemoWindow{false};
-  bool m_showAnotherWindow{false};
-  std::array<float, 4> m_clearColor{0.906f, 0.910f, 0.918f, 1.00f};
+  std::default_random_engine m_randomEngine;
+
+  Model m_model;
+
+  glm::vec3 m_position{0.0f,0.0f,0.0f};
+
+  glm::vec3 m_velocity{1.0f,1.0f,1.0f};
+  float m_escalar = 1.0f;
+
+  glm::mat4 m_viewMatrix{1.0f};
+  glm::mat4 m_projMatrix{1.0f};
+
+  void update();
 };
 
 #endif
