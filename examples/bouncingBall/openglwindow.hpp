@@ -25,8 +25,6 @@ class OpenGLWindow : public abcg::OpenGLWindow {
 
 
   TrackBall m_trackBallLight;
-  float m_zoom{};
-
   std::default_random_engine m_randomEngine;
 
   Model m_model;
